@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './Editor.css'
 
 export default function Editor() {
+    const[fontStyle, setFontStyle] = useState('')
     const [text, setText] = useState('')
     const [color, setColor] = useState('')
     const [bgColor, setBgColor] = useState('#fff')
@@ -40,6 +41,9 @@ export default function Editor() {
     function changeBgColor(event){
         setBgColor(event.target.value)
     }
+    function changeFontStyle(event){
+        setFontStyle(event.target.value)
+    }
 
     let wordCount = 0
 
@@ -53,7 +57,7 @@ export default function Editor() {
     <>
     <h1>Enter Text To Edit</h1>
     <div className="mb-3">
-        <textarea name="" id="myBox" rows="10" value={text} onChange={handleChange} className='form-control text-editor' style={{color, background: bgColor, fontSize: fontSize +"px", resize: "none", height:"350px"}}></textarea>
+        <textarea name="" id="myBox" rows="10" value={text} onChange={handleChange} className='form-control text-editor' style={{color, background: bgColor, fontSize: fontSize +"px", resize: "none", height:"350px", fontFamily: fontStyle}}></textarea>
 
     </div>
     <div className="d-flex flex-row align-items-center">
@@ -68,6 +72,14 @@ export default function Editor() {
         </div>
         <input type="color" className="mx-2" onChange={changeColor} id="color"/>
         <input type="color" className="mx-2" onChange={changeBgColor} id="color"/>
+        <select onChange={changeFontStyle} id="">
+            <option value="Times">Times</option>
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="sans-serif">sans-serif</option>
+        </select>
     </div>
     <h3 className='my-2'>Summary:</h3>
     <p><b>{wordCount}</b> Words & <b>{text.length}</b> characters</p>

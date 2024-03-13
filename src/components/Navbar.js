@@ -18,10 +18,10 @@ export default function Navbar() {
           <a className="nav-link" href="#">Link</a>
         </li>
       </ul>
-      <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      <div className="form-check form-switch">
+        <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
+        <label className="form-check-label" for="flexSwitchCheckDefault">Enable Dark m</label>
+      </div>
     </div>
   </div>
 </nav>
