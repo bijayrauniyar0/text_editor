@@ -5,21 +5,24 @@ import React, {useState} from 'react'
 
 function App() {
 
-  const [mode, setMode] = useState('primary')
+const [mode, setMode] = useState('primary')
 
-  function toggleMode(){
-    if(mode === 'primary'){
-      setMode('dark')
-    }else{
-      setMode('primary')
-    }
+const toggleMode = () => {
+  if(mode === 'primary'){
+    setMode('dark')
+    document.body.style.backgroundColor = 'black'
+  }else{
+    setMode('primary')
+    document.body.style.backgroundColor = 'white'
   }
+}
+
 
   return (
    <>
-    <Navbar mode={mode} toggleMode = {toggleMode}/>
+    <Navbar mode={mode} toggleMode={toggleMode}/>
     <div className="container my-5">
-      <Editor/>
+      <Editor mode={mode}/>
     </div>
    </>
   );

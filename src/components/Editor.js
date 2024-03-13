@@ -1,19 +1,22 @@
 import React, {useState} from 'react'
 import './Editor.css'
 
-export default function Editor() {
-    const[fontStyle, setFontStyle] = useState('')
+export default function Editor(props) {
     const [text, setText] = useState('')
     const [color, setColor] = useState('')
     const [bgColor, setBgColor] = useState('#fff')
-    const [fontSize, setFontSize] = useState('18')
+    const [fontSize, setFontSize] = useState(16)
+    const [fontFamily, setFontFamily] = useState('Gill Sans')
+
+    function handleFontFamily(event){
+        setFontFamily(event.target.value)
+    }
+
     function handleChange(event) {
         setText(event.target.value)
     }
-    function handleFontChange(event) {
-        let fontSize = event.target.value
-        console.log(fontSize)
-        setFontSize(fontSize)
+    function handleFontSize(event){
+        setFontSize(event.target.value)
     }
     function changeToUpperCase(){
         let newText = text.toUpperCase()
@@ -35,14 +38,12 @@ export default function Editor() {
         document.querySelector('.text-editor').classList.toggle('italic')
         document.querySelector('.italic-text').classList.toggle('active')
     }
+
     function changeColor(event){
         setColor(event.target.value)
     }
     function changeBgColor(event){
         setBgColor(event.target.value)
-    }
-    function changeFontStyle(event){
-        setFontStyle(event.target.value)
     }
 
     let wordCount = 0
@@ -55,35 +56,40 @@ export default function Editor() {
     }
   return (
     <>
-    <h1>Enter Text To Edit</h1>
+    <h1 style={{color: props.mode==='primary'? "black": "white"}}>Enter Text To Edit</h1>
     <div className="mb-3">
-        <textarea name="" id="myBox" rows="10" value={text} onChange={handleChange} className='form-control text-editor' style={{color, background: bgColor, fontSize: fontSize +"px", resize: "none", height:"350px", fontFamily: fontStyle}}></textarea>
+        <textarea name="" id="myBox" rows="10" value={text} onChange={handleChange} className='form-control text-editor' style={{color: props.mode==='primary'? "black": "white", background: props.mode==='primary'? "white": "#2b2b28", fontSize: fontSize+"px", resize: "none", height: "45vh", fontFamily: fontFamily}}></textarea>
 
     </div>
     <div className="d-flex flex-row align-items-center">
-        <button onClick={changeToUpperCase} className="btn btn-primary mx-2">A</button>
-        <button onClick={changeToLowerCase} className="btn btn-primary mx-2" >a</button>
-        <button onClick={changeToBold} className="btn btn-primary mx-2 text-bold" ><b>Bold</b></button>
-        <button onClick={changeToUnderline} className="btn btn-primary mx-2 underline-text" ><u>U</u></button>
-        <button onClick={changeToItalic} className="btn btn-primary mx-2 italic-text" ><i>Italic</i></button>
+        <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToUpperCase} className="btn btn-primary mx-2">A</button>
+        <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToLowerCase} className="btn btn-primary mx-2" >a</button>
+        <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToBold} className="btn btn-primary mx-2 text-bold" ><b>Bold</b></button>
+        <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToUnderline} className="btn btn-primary mx-2 underline-text" ><u>U</u></button>
+        <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToItalic} className="btn btn-primary mx-2 italic-text" ><i>Italic</i></button>
         <div className="d-flex flex-row align-items-center">
-            <input type="number" value={fontSize} onChange={handleFontChange} className='font-size-input' />
-            <p className='mx-1 my-2'>px</p>
+            <input type="number" style={{width: "60px"}} onChange={handleFontSize} value={fontSize}/>
+            <p className="my-2 mx-1" style={{fontSize: "22px", color: props.mode==='primary'? "black": "white"}}>px</p>
         </div>
+
+        <select className="mx-2" id="" onChange={handleFontFamily} >
+            <option value="Gill Sans">Gill Sans</option>
+            <option value="Calibri">Calibri</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Segoe UI">Segoe UI</option>
+            <option value="Roboto">Roboto</option>
+            <option value="sans-serif">sans-serif</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times</option>
+        </select>
+
         <input type="color" className="mx-2" onChange={changeColor} id="color"/>
         <input type="color" className="mx-2" onChange={changeBgColor} id="color"/>
-        <select onChange={changeFontStyle} id="">
-            <option value="Times">Times</option>
-            <option value="Arial">Arial</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Geneva">Geneva</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="sans-serif">sans-serif</option>
-        </select>
+
     </div>
-    <h3 className='my-2'>Summary:</h3>
-    <p><b>{wordCount}</b> Words & <b>{text.length}</b> characters</p>
-    <p>Estimated Time To Read: <b>{wordCount*0.0008.toFixed(5)} minutes</b></p>
+    <h3 className='my-2' style={{color: props.mode==='primary'? "black": "white"}}>Summary:</h3>
+    <p style={{color: props.mode==='primary'? "black": "white"}}><b>{wordCount}</b> Words & <b>{text.length}</b> characters</p>
+    <p style={{color: props.mode==='primary'? "black": "white"}}>Estimated Time To Read: <b>{wordCount*0.0008.toFixed(5)} minutes</b></p>
     </>
   )
 }
