@@ -39,6 +39,8 @@ export default function Editor(props) {
         document.querySelector('.italic-text').classList.toggle('active')
     }
 
+    // change color
+    
     function changeColor(event){
         setColor(event.target.value)
     }
