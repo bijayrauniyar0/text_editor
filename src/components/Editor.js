@@ -74,6 +74,7 @@ export default function Editor(props) {
             <p className="my-2 mx-1" style={{fontSize: "22px", color: props.mode==='primary'? "black": "white"}}>px</p>
         </div>
 
+        {/* to change font size */}
         <select className="mx-2" id="" onChange={handleFontFamily} >
             <option value="Gill Sans">Gill Sans</option>
             <option value="Calibri">Calibri</option>
