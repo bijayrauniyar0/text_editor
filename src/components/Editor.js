@@ -69,6 +69,8 @@ export default function Editor(props) {
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToBold} className="btn btn-primary mx-2 text-bold" ><b>Bold</b></button>
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToUnderline} className="btn btn-primary mx-2 underline-text" ><u>U</u></button>
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToItalic} className="btn btn-primary mx-2 italic-text" ><i>Italic</i></button>
+        
+        {/* section which changes font size */}
         <div className="d-flex flex-row align-items-center">
             <input type="number" style={{width: "60px"}} onChange={handleFontSize} value={fontSize}/>
             <p className="my-2 mx-1" style={{fontSize: "22px", color: props.mode==='primary'? "black": "white"}}>px</p>
