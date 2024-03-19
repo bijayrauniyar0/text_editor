@@ -64,6 +64,7 @@ export default function Editor(props) {
 
     </div>
     <div className="d-flex flex-row align-items-center">
+        {/* uppercase */}
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToUpperCase} className="btn btn-primary mx-2">A</button>
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToLowerCase} className="btn btn-primary mx-2" >a</button>
         <button style={{backgroundColor: props.mode==='primary'? "#0a5fad": "#2b2b28"}} onClick={changeToBold} className="btn btn-primary mx-2 text-bold" ><b>Bold</b></button>
