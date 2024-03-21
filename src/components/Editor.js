@@ -15,6 +15,7 @@ export default function Editor(props) {
     function handleChange(event) {
         setText(event.target.value)
     }
+    // function to handle font size
     function handleFontSize(event){
         setFontSize(event.target.value)
     }
