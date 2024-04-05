@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import Editor from './components/Editor';
 import React, {useState} from 'react'
 
+// function 
+
 function App() {
 
 const [mode, setMode] = useState('primary')
